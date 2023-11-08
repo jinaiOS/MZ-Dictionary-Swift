@@ -10,10 +10,21 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    /**
+     @brief  navigationBarController 객체
+     */
+    var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let introVC = MainViewController(nibName: "Main", bundle: nil)
+        navigationController = UINavigationController(rootViewController: introVC)
+        // 네비게이션바 히든
+        navigationController?.isNavigationBarHidden = true
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
 
