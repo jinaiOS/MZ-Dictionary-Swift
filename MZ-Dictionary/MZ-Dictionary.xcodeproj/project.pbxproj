@@ -16,6 +16,8 @@
 		562B01902AFBF5F50099157C /* MZ_DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B018F2AFBF5F50099157C /* MZ_DictionaryTests.swift */; };
 		562B019A2AFBF5F50099157C /* MZ_DictionaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B01992AFBF5F50099157C /* MZ_DictionaryUITests.swift */; };
 		562B019C2AFBF5F50099157C /* MZ_DictionaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B019B2AFBF5F50099157C /* MZ_DictionaryUITestsLaunchTests.swift */; };
+		562B01A92AFC02270099157C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B01A82AFC02270099157C /* MainViewController.swift */; };
+		562B01AB2AFC022F0099157C /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B01AA2AFC022F0099157C /* StarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		562B01952AFBF5F50099157C /* MZ-DictionaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MZ-DictionaryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		562B01992AFBF5F50099157C /* MZ_DictionaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZ_DictionaryUITests.swift; sourceTree = "<group>"; };
 		562B019B2AFBF5F50099157C /* MZ_DictionaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZ_DictionaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		562B01A82AFC02270099157C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		562B01AA2AFC022F0099157C /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				562B017A2AFBF5F30099157C /* SceneDelegate.swift */,
 				562B017C2AFBF5F30099157C /* ViewController.swift */,
 				562B017E2AFBF5F30099157C /* Main.storyboard */,
+				562B01A82AFC02270099157C /* MainViewController.swift */,
+				562B01AA2AFC022F0099157C /* StarViewController.swift */,
 				562B01812AFBF5F40099157C /* Assets.xcassets */,
 				562B01832AFBF5F40099157C /* LaunchScreen.storyboard */,
 				562B01862AFBF5F40099157C /* Info.plist */,
@@ -261,6 +267,8 @@
 				562B017D2AFBF5F30099157C /* ViewController.swift in Sources */,
 				562B01792AFBF5F30099157C /* AppDelegate.swift in Sources */,
 				562B017B2AFBF5F30099157C /* SceneDelegate.swift in Sources */,
+				562B01A92AFC02270099157C /* MainViewController.swift in Sources */,
+				562B01AB2AFC022F0099157C /* StarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
