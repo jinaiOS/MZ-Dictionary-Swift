@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="h7a-0B-oTO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MainTableViweCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="h7a-0B-oTO" customClass="MainTableViweCell" customModule="MZ_Dictionary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h7a-0B-oTO" id="8tX-b3-b8N">
@@ -50,6 +50,10 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="Djw-gI-Ue6" secondAttribute="bottom" constant="10" id="zAE-Eb-1Ts"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblContent" destination="Djw-gI-Ue6" id="Rlb-JG-ege"/>
+                                            <outlet property="lblTitle" destination="tpc-xR-N9Q" id="pEU-n0-bxD"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -64,6 +68,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="Daw-Qs-Cgr"/>
+                    <connections>
+                        <outlet property="tvMain" destination="mQc-xu-P8K" id="dHy-Rm-JVZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKn-Dp-epR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="1HV-OX-HPA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StarTableViweCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="1HV-OX-HPA" customClass="StarTableViweCell" customModule="MZ_Dictionary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1HV-OX-HPA" id="AVk-QI-ONz">
@@ -111,6 +118,10 @@
                                                 <constraint firstItem="BIu-0h-Y6F" firstAttribute="leading" secondItem="AVk-QI-ONz" secondAttribute="leadingMargin" constant="10" id="ntV-Z9-Vtt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblContent" destination="LdT-BH-3F6" id="C7h-LL-FtI"/>
+                                            <outlet property="lblTitle" destination="BIu-0h-Y6F" id="gmP-FL-JzK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -125,6 +136,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="KQb-He-Hzc"/>
+                    <connections>
+                        <outlet property="tvMain" destination="nPK-TX-PsB" id="84l-Zr-kAn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSr-ZF-UKL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
