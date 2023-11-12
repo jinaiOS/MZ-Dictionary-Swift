@@ -26,6 +26,19 @@ class FireStoreManager {
         }
     }
     
+    func fetchNumberOfStarDoc() async -> (result: Int?, error: Error?) {
+        let ref = db.collection("list").whereField("star", isEqualTo: true)
+        let countQuery = ref.count
+        do {
+            let snapshot = try await countQuery.getAggregation(source: .server)
+            print(snapshot.count.intValue)
+            return (snapshot.count.intValue, nil)
+        } catch {
+            print(error)
+            return (nil, error)
+        }
+    }
+    
     /// fetch list
     func fetchList(pageSize: Int, completion: @escaping ([ListModel]?) -> Void) {
         var dic: [[String: Any]] = []
@@ -80,44 +93,65 @@ class FireStoreManager {
                     completion(value) // 성공 시 이름 배열 전달
                 }
             }
-            //            let listener = query.addSnapshotListener { (snapshot, error) in
-            //                guard let snapshot = snapshot else {
-            //                    print("Error retrieving list: \(error.debugDescription)")
-            //                    return
-            //                }
-            //
-            //                guard let lastSnapshot = snapshot.documents.last else {
-            //                    // The collection is empty.
-            //                    return
-            //                }
-            //
-            //                print("Last snapshot: \(lastSnapshot)") // 디버깅을 위한 출력
-            //
-            //                let newQuery = query.start(afterDocument: lastSnapshot)
-            //
-            //                newQuery.getDocuments { (querySnapshot, error) in
-            //                    if let error = error {
-            //                        print("Error getting documents: \(error)")
-            //                        completion([]) // 에러 시 빈 배열을 반환하거나 다른 적절한 처리를 수행하세요.
-            //                        return
-            //                    }
-            //
-            //                    for document in querySnapshot?.documents ?? [] {
-            //                        dic.append(document.data())
-            //                    }
-            //
-            //                    print("Fetched documents: \(dic)") // 디버깅을 위한 출력
-            //
-            //                    let newValue = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
-            //                    print("list result: \(String(describing: newValue))")
-            //
-            //                    // completion을 호출할 때 누적된 데이터를 전달
-            //                    completion(newValue)
-            //                }
-            //            }
         }
     }
     
+    /// fetch list
+    func fetchStarList(pageSize: Int, completion: @escaping ([ListModel]?) -> Void) {
+        var dic: [[String: Any]] = []
+        var value: [ListModel]?
+
+        let query: Query = db.collection("list").limit(to: pageSize).whereField("star", isEqualTo: true)
+        if pageSize == 10 {
+            query.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                    completion(value) // 호출하는 쪽에 빈 배열 전달
+                    return
+                }
+                
+                for document in querySnapshot?.documents ?? [] {
+                    dic.append(document.data())
+                }
+                self.lastDoc = querySnapshot?.documents.last
+                dic.remove(at: 0)
+                value = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
+                print("list result: \(String(describing: value))")
+                completion(value) // 성공 시 이름 배열 전달
+            }
+        } else {
+            query.addSnapshotListener { (snapshot, error) in
+                guard let snapshot = snapshot else {
+                    print("Error retrieving list: \(error.debugDescription)")
+                    return
+                }
+                
+                guard let lastSnapshot = snapshot.documents.last else {
+                    print("Error retrieving list: \(error.debugDescription)")
+                    return
+                }
+                
+                query.start(afterDocument: self.lastDoc!).getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                        completion(value) // 호출하는 쪽에 빈 배열 전달
+                        return
+                    }
+                    
+                    for document in querySnapshot?.documents ?? [] {
+                        dic.append(document.data())
+                    }
+                    
+                    //                dic.remove(at: 0)
+                    print(self.dicToObject(objectType: ListModel.self, dictionary: lastSnapshot.data()))
+
+                    value = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
+                    print("list result: \(String(describing: value))")
+                    completion(value) // 성공 시 이름 배열 전달
+                }
+            }
+        }
+    }
 }
 extension FireStoreManager {
     public enum StoreError: Error {

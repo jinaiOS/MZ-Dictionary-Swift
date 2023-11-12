@@ -27,6 +27,7 @@
 		562B01BA2AFC0CBA0099157C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 562B01B92AFC0CBA0099157C /* FirebaseStorage */; };
 		562B01BC2AFC0E150099157C /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B01BB2AFC0E150099157C /* FireStoreManager.swift */; };
 		562B01BE2AFC12110099157C /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562B01BD2AFC12110099157C /* ListModel.swift */; };
+		56CB42D52B00E5390038B5F7 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB42D42B00E5390038B5F7 /* UserDefaultManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		562B01AC2AFC0C630099157C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		562B01BB2AFC0E150099157C /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		562B01BD2AFC12110099157C /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		56CB42D42B00E5390038B5F7 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				562B017C2AFBF5F30099157C /* ViewController.swift */,
 				562B017E2AFBF5F30099157C /* Main.storyboard */,
 				562B01A82AFC02270099157C /* MainViewController.swift */,
+				56CB42D42B00E5390038B5F7 /* UserDefaultManager.swift */,
 				562B01AA2AFC022F0099157C /* StarViewController.swift */,
 				562B01BB2AFC0E150099157C /* FireStoreManager.swift */,
 				562B01BD2AFC12110099157C /* ListModel.swift */,
@@ -299,6 +302,7 @@
 			files = (
 				562B017D2AFBF5F30099157C /* ViewController.swift in Sources */,
 				562B01792AFBF5F30099157C /* AppDelegate.swift in Sources */,
+				56CB42D52B00E5390038B5F7 /* UserDefaultManager.swift in Sources */,
 				562B017B2AFBF5F30099157C /* SceneDelegate.swift in Sources */,
 				562B01BC2AFC0E150099157C /* FireStoreManager.swift in Sources */,
 				562B01BE2AFC12110099157C /* ListModel.swift in Sources */,

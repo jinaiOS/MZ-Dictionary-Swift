@@ -12,12 +12,13 @@ struct ListModel: Codable {
     let title: String?
     let content: String?
     let image: String?
-    var isStar: Bool = false
+    let star: Bool?
     
     enum CodingKeys: String, CodingKey {
         case isNew
         case title
         case content
         case image
+        case star
     }
 }
