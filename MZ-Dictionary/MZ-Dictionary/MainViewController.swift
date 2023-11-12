@@ -103,6 +103,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
             cell.lblTitle.text = list[indexPath.row].title ?? ""
             cell.lblContent.text = list[indexPath.row].content ?? ""
+            cell.btnStar.isSelected = list[indexPath.row].star ?? false
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as! LoadingCell
@@ -128,6 +129,8 @@ class MainTableViewCell: UITableViewCell {
     /// content label
     @IBOutlet weak var lblContent: UILabel!
     
+    @IBOutlet weak var btnStar: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -137,6 +140,10 @@ class MainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func starButtonPressed(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
 }
 

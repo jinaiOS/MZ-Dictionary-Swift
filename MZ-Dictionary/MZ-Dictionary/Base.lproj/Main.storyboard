@@ -29,29 +29,46 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-xR-N9Q">
-                                                    <rect key="frame" x="30" y="11" width="333" height="21"/>
+                                                    <rect key="frame" x="30" y="11" width="303" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-aJ-GoY">
+                                                    <rect key="frame" x="333" y="0.0" width="60" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Ac6-Da-kl2"/>
+                                                    </constraints>
+                                                    <color key="tintColor" systemColor="systemYellowColor"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="star" catalog="system"/>
+                                                    <state key="selected" image="star.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="starButtonPressed:" destination="h7a-0B-oTO" eventType="touchUpInside" id="R9n-wI-btB"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djw-gI-Ue6">
-                                                    <rect key="frame" x="30" y="38" width="333" height="21"/>
+                                                    <rect key="frame" x="30" y="38" width="303" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Djw-gI-Ue6" secondAttribute="trailing" constant="10" id="SBd-Fo-qzm"/>
+                                                <constraint firstItem="cFp-aJ-GoY" firstAttribute="leading" secondItem="tpc-xR-N9Q" secondAttribute="trailing" id="7RM-6Z-ZyC"/>
+                                                <constraint firstItem="cFp-aJ-GoY" firstAttribute="leading" secondItem="Djw-gI-Ue6" secondAttribute="trailing" id="Acu-po-hA7"/>
+                                                <constraint firstItem="cFp-aJ-GoY" firstAttribute="top" secondItem="8tX-b3-b8N" secondAttribute="top" id="Oc3-Kk-s9P"/>
                                                 <constraint firstItem="tpc-xR-N9Q" firstAttribute="top" secondItem="8tX-b3-b8N" secondAttribute="topMargin" id="Zbg-3Y-45E"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="tpc-xR-N9Q" secondAttribute="trailing" constant="10" id="hbr-7e-Ruv"/>
+                                                <constraint firstAttribute="bottom" secondItem="cFp-aJ-GoY" secondAttribute="bottom" id="hT0-Dj-7Fp"/>
                                                 <constraint firstItem="Djw-gI-Ue6" firstAttribute="leading" secondItem="8tX-b3-b8N" secondAttribute="leadingMargin" constant="10" id="idE-qZ-vla"/>
                                                 <constraint firstItem="tpc-xR-N9Q" firstAttribute="leading" secondItem="8tX-b3-b8N" secondAttribute="leadingMargin" constant="10" id="ooX-lW-0Hz"/>
+                                                <constraint firstAttribute="trailing" secondItem="cFp-aJ-GoY" secondAttribute="trailing" id="qUU-Nb-fBc"/>
                                                 <constraint firstItem="Djw-gI-Ue6" firstAttribute="top" secondItem="tpc-xR-N9Q" secondAttribute="bottom" constant="6" id="qhf-03-uGb"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Djw-gI-Ue6" secondAttribute="bottom" constant="10" id="zAE-Eb-1Ts"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btnStar" destination="cFp-aJ-GoY" id="74f-qD-7jL"/>
                                             <outlet property="lblContent" destination="Djw-gI-Ue6" id="Rlb-JG-ege"/>
                                             <outlet property="lblTitle" destination="tpc-xR-N9Q" id="pEU-n0-bxD"/>
                                         </connections>
