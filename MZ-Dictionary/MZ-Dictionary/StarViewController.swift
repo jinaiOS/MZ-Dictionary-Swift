@@ -139,5 +139,9 @@ class StarTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func starButtonSelected(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
 }
 

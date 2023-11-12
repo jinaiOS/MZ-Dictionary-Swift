@@ -154,6 +154,9 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="star" catalog="system"/>
                                                     <state key="selected" image="star.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="starButtonSelected:" destination="1HV-OX-HPA" eventType="touchUpInside" id="rC3-n2-bTM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
