@@ -22,6 +22,10 @@ class StarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerTableViewCell()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         fetchListCount()
         fetchList()
     }
@@ -89,7 +93,7 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return list.count
-        } else if section == 1 && isDataRunning {
+        } else if section == 1 && isDataRunning && isTotalData == false {
             return 1
         }
         

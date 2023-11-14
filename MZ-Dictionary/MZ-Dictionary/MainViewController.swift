@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//MARK: HAVETO 로딩 맨 아래에선 다시 돌아오도록 설정
+
 class MainViewController: UIViewController {
     
     /// main tableview
@@ -91,7 +91,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return list.count
-        } else if section == 1 && isDataRunning {
+        } else if section == 1 && isDataRunning && isTotalData == false {
             return 1
         }
         
@@ -103,6 +103,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
             cell.lblTitle.text = list[indexPath.row].title ?? ""
             cell.lblContent.text = list[indexPath.row].content ?? ""
+            cell.btnStar.isSelected = list[indexPath.row].star ?? false
+            cell.selectionStyle = .none
+            cell.index = indexPath.row
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as! LoadingCell
@@ -119,6 +122,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             isDataRunning = false
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MainDetailViewController(nibName: "MainDetailViewController", bundle: nil)
+        vc.dataArray = [list[indexPath.row].title ?? "", list[indexPath.row].content ?? ""]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 class MainTableViewCell: UITableViewCell {
@@ -127,6 +136,10 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     /// content label
     @IBOutlet weak var lblContent: UILabel!
+    
+    @IBOutlet weak var btnStar: UIButton!
+    
+    var index = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -137,6 +150,11 @@ class MainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func starButtonPressed(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        FireStoreManager.shared.storeStarList(index: index, isStar: sender.isSelected)
     }
 }
 

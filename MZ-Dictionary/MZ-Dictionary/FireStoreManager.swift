@@ -13,6 +13,7 @@ class FireStoreManager {
     private let db = Firestore.firestore()
     var lastDoc: QueryDocumentSnapshot?
     
+    //MARK: Fetch
     func fetchNumberOfDoc() async -> (result: Int?, error: Error?) {
         let ref = db.collection("list")
         let countQuery = ref.count
@@ -149,6 +150,21 @@ class FireStoreManager {
                     print("list result: \(String(describing: value))")
                     completion(value) // 성공 시 이름 배열 전달
                 }
+            }
+        }
+    }
+    
+    //MARK: Store
+    func storeStarList(index: Int, isStar: Bool) {
+        let ref = db.collection("list").document(String(index))
+        
+        ref.updateData([
+            "star": isStar
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+//                print("Document added with ID: \(ref!.documentID)")
             }
         }
     }
