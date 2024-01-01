@@ -26,6 +26,8 @@ class MainViewController: UIViewController {
         registerTableViewCell()
         fetchListCount()
         fetchList()
+        
+        tvMain.layer.cornerRadius = 10
     }
     
     func registerTableViewCell() {
