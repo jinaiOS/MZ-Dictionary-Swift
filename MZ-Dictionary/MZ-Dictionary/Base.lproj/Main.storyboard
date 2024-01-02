@@ -186,6 +186,12 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="chevron.right" catalog="system"/>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만의 즐겨찾기를 선택해 주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcs-78-6x7">
+                                <rect key="frame" x="10" y="414" width="373" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nPK-TX-PsB">
                                 <rect key="frame" x="15" y="158.66666666666669" width="363" height="590.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -269,6 +275,7 @@
                         <color key="backgroundColor" red="0.50588235294117645" green="0.73333333333333328" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Whh-Au-uEp" firstAttribute="centerX" secondItem="8li-2d-dGa" secondAttribute="centerX" id="14s-wZ-v5G"/>
+                            <constraint firstItem="drj-AJ-OeR" firstAttribute="trailing" secondItem="pcs-78-6x7" secondAttribute="trailing" constant="10" id="ApW-18-Tsc"/>
                             <constraint firstItem="nPK-TX-PsB" firstAttribute="leading" secondItem="drj-AJ-OeR" secondAttribute="leading" constant="15" id="Dbq-FX-rtj"/>
                             <constraint firstItem="nPK-TX-PsB" firstAttribute="top" secondItem="djr-SZ-XyO" secondAttribute="bottom" constant="30" id="H64-Qu-WzE"/>
                             <constraint firstItem="Whh-Au-uEp" firstAttribute="leading" secondItem="djr-SZ-XyO" secondAttribute="trailing" id="LY6-tx-Cdv"/>
@@ -277,6 +284,8 @@
                             <constraint firstItem="Oba-gf-quZ" firstAttribute="centerY" secondItem="Whh-Au-uEp" secondAttribute="centerY" id="YwK-ga-dJu"/>
                             <constraint firstItem="drj-AJ-OeR" firstAttribute="bottom" secondItem="nPK-TX-PsB" secondAttribute="bottom" constant="20" id="hWL-XI-jfa"/>
                             <constraint firstItem="djr-SZ-XyO" firstAttribute="centerY" secondItem="Whh-Au-uEp" secondAttribute="centerY" id="ogU-bc-AuC"/>
+                            <constraint firstItem="pcs-78-6x7" firstAttribute="centerY" secondItem="8li-2d-dGa" secondAttribute="centerY" id="pTT-Ax-Eo5"/>
+                            <constraint firstItem="pcs-78-6x7" firstAttribute="leading" secondItem="drj-AJ-OeR" secondAttribute="leading" constant="10" id="qVi-OP-KAb"/>
                             <constraint firstAttribute="trailing" secondItem="nPK-TX-PsB" secondAttribute="trailing" constant="15" id="rFI-8X-3iu"/>
                         </constraints>
                     </view>
@@ -284,6 +293,7 @@
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="lblEmpty" destination="pcs-78-6x7" id="ZtU-xl-vtG"/>
                         <outlet property="tvMain" destination="nPK-TX-PsB" id="84l-Zr-kAn"/>
                     </connections>
                 </viewController>
