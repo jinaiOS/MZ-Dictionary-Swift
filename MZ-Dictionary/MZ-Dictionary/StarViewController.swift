@@ -22,6 +22,8 @@ class StarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerTableViewCell()
+        
+        tvMain.layer.cornerRadius = 10
     }
     
     override func viewDidAppear(_ animated: Bool) {
