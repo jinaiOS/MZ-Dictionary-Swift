@@ -12,6 +12,8 @@ class StarViewController: UIViewController {
     /// main tableview
     @IBOutlet weak var tvMain: UITableView!
     
+    @IBOutlet weak var lblEmpty: UILabel!
+    
     var list: [ListModel] = []
     
     var pageNum = 10
@@ -45,14 +47,24 @@ class StarViewController: UIViewController {
     }
     
     func fetchList() {
-        FireStoreManager.shared.fetchStarList(pageSize: pageNum) { list in
-            if self.pageNum == 10 {
-                self.list = list ?? []
-            } else {
-                self.list += list ?? []
+        if totalCount < 10 {
+            pageNum = totalCount
+        }
+        if totalCount != 0 {
+            FireStoreManager.shared.fetchStarList(pageSize: pageNum) { list in
+                if self.pageNum == 10 {
+                    self.list = list ?? []
+                } else {
+                    self.list += list ?? []
+                }
+                self.isTotalData = (self.pageNum >= self.totalCount)
+                self.tvMain.reloadData()
+                self.lblEmpty.isHidden = true
+                self.tvMain.isHidden = false
             }
-            self.isTotalData = (self.pageNum >= self.totalCount)
-            self.tvMain.reloadData()
+        } else {
+            lblEmpty.isHidden = false
+            tvMain.isHidden = true
         }
     }
     
