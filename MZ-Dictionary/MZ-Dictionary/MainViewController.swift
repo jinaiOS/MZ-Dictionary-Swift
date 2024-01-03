@@ -20,14 +20,14 @@ class MainViewController: UIViewController {
     var isDataRunning = false
     
     var cellHeights: [IndexPath: CGFloat] = [:]
+    var gradientLayer: CAGradientLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         registerTableViewCell()
         fetchListCount()
         fetchList()
-        
-        tvMain.layer.cornerRadius = 10
     }
     
     func registerTableViewCell() {
@@ -141,11 +141,17 @@ class MainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnStar: UIButton!
     
+    @IBOutlet weak var vContent: UIView!
+    
     var index = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        vContent.layer.cornerRadius = 15
+        vContent.layer.shadowColor = UIColor.black.cgColor
+        vContent.layer.shadowRadius = 6
+        vContent.layer.shadowOpacity = 0.16
+        vContent.layer.shadowOffset = CGSize(width: 0, height: 3)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
