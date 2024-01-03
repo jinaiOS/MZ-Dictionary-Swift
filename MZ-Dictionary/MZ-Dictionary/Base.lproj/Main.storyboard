@@ -131,6 +131,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="chevron.left" catalog="system"/>
+                                <connections>
+                                    <action selector="prevYearButtonPressed:" destination="Lds-VC-GGe" eventType="touchUpInside" id="jkU-VZ-RcC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024년" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-ew-meb">
                                 <rect key="frame" x="167.33333333333334" y="103" width="58.333333333333343" height="21"/>
@@ -147,6 +150,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="chevron.right" catalog="system"/>
+                                <connections>
+                                    <action selector="nextYearButtonPressed:" destination="Lds-VC-GGe" eventType="touchUpInside" id="MYH-JE-rp5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PMu-8V-F3Q"/>
@@ -172,6 +178,9 @@
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="btnNext" destination="fmG-PC-zXg" id="8gy-Dq-Rsj"/>
+                        <outlet property="btnPrev" destination="IIz-pb-lfH" id="Wdv-Lr-8IO"/>
+                        <outlet property="lblYear" destination="Qka-ew-meb" id="kLv-WV-lg2"/>
                         <outlet property="tvMain" destination="mQc-xu-P8K" id="dHy-Rm-JVZ"/>
                     </connections>
                 </viewController>

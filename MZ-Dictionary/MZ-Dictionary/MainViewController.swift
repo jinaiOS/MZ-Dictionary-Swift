@@ -12,6 +12,10 @@ class MainViewController: UIViewController {
     /// main tableview
     @IBOutlet weak var tvMain: UITableView!
     
+    @IBOutlet weak var btnPrev: UIButton!
+    @IBOutlet weak var lblYear: UILabel!
+    @IBOutlet weak var btnNext: UIButton!
+    
     var list: [ListModel] = []
     
     var pageNum = 10
@@ -21,6 +25,7 @@ class MainViewController: UIViewController {
     
     var cellHeights: [IndexPath: CGFloat] = [:]
     var gradientLayer: CAGradientLayer!
+    var currentYear = 2024
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,19 @@ class MainViewController: UIViewController {
         registerTableViewCell()
         fetchListCount()
         fetchList()
+        
+        lblYear.text = "\(DateFromThisYear()) 년"
+        btnNext.isEnabled = false
+        currentYear = Int(DateFromThisYear()) ?? 0
+    }
+    
+    func DateFromThisYear() -> String {
+        let dateFormatter = DateFormatter.init()
+        dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.locale = Locale.init(identifier: "ko_KR")
+        dateFormatter.formatterBehavior = .default
+        return dateFormatter.string(from: Date())
     }
     
     func registerTableViewCell() {
@@ -59,6 +77,19 @@ class MainViewController: UIViewController {
             self.tvMain.reloadData()
         }
     }
+    
+    @IBAction func prevYearButtonPressed(_ sender: Any) {
+        currentYear -= 1
+        lblYear.text = "\(currentYear) 년"
+        btnNext.isEnabled = true
+    }
+    
+    @IBAction func nextYearButtonPressed(_ sender: Any) {
+        currentYear += 1
+        lblYear.text = "\(currentYear) 년"
+        btnNext.isEnabled = currentYear != Int(DateFromThisYear()) ?? 0
+    }
+    
 }
 extension MainViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
