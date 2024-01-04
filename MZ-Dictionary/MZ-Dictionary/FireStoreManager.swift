@@ -14,8 +14,8 @@ class FireStoreManager {
     var lastDoc: QueryDocumentSnapshot?
     
     //MARK: Fetch
-    func fetchNumberOfDoc() async -> (result: Int?, error: Error?) {
-        let ref = db.collection("list")
+    func fetchNumberOfDoc(year: String) async -> (result: Int?, error: Error?) {
+        let ref = db.collection("list").whereField("year", isEqualTo: year)
         let countQuery = ref.count
         do {
             let snapshot = try await countQuery.getAggregation(source: .server)
@@ -41,11 +41,11 @@ class FireStoreManager {
     }
     
     /// fetch list
-    func fetchList(pageSize: Int, completion: @escaping ([ListModel]?) -> Void) {
+    func fetchList(pageSize: Int, year: String, isFirst: Bool, completion: @escaping ([ListModel]?) -> Void) {
         var dic: [[String: Any]] = []
         var value: [ListModel]?
 
-        let query: Query = db.collection("list").limit(to: pageSize)
+        let query: Query = db.collection("list").whereField("year", isEqualTo: year).limit(to: pageSize)
         if pageSize == 10 {
             query.getDocuments { (querySnapshot, error) in
                 if let error = error {
@@ -74,25 +74,46 @@ class FireStoreManager {
                     print("Error retrieving list: \(error.debugDescription)")
                     return
                 }
-                
-                query.start(afterDocument: self.lastDoc!).getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error getting documents: \(error)")
-                        completion(value) // 호출하는 쪽에 빈 배열 전달
-                        return
-                    }
-                    
-                    for document in querySnapshot?.documents ?? [] {
-                        dic.append(document.data())
-                    }
-                    
-                    //                dic.remove(at: 0)
-                    print(self.dicToObject(objectType: ListModel.self, dictionary: lastSnapshot.data()))
+                if isFirst {
+                    query.getDocuments { (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                            completion(value) // 호출하는 쪽에 빈 배열 전달
+                            return
+                        }
+                        
+                        for document in querySnapshot?.documents ?? [] {
+                            dic.append(document.data())
+                        }
+                        
+                        //                dic.remove(at: 0)
+                        print(self.dicToObject(objectType: ListModel.self, dictionary: lastSnapshot.data()))
 
-                    value = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
-                    print("list result: \(String(describing: value))")
-                    completion(value) // 성공 시 이름 배열 전달
+                        value = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
+                        print("list result: \(String(describing: value))")
+                        completion(value) // 성공 시 이름 배열 전달
+                    }
+                } else {
+                    query.start(afterDocument: self.lastDoc!).getDocuments { (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                            completion(value) // 호출하는 쪽에 빈 배열 전달
+                            return
+                        }
+                        
+                        for document in querySnapshot?.documents ?? [] {
+                            dic.append(document.data())
+                        }
+                        
+                        //                dic.remove(at: 0)
+                        print(self.dicToObject(objectType: ListModel.self, dictionary: lastSnapshot.data()))
+
+                        value = self.dictionaryToObject(objectType: ListModel.self, dictionary: dic)
+                        print("list result: \(String(describing: value))")
+                        completion(value) // 성공 시 이름 배열 전달
+                    }
                 }
+                
             }
         }
     }

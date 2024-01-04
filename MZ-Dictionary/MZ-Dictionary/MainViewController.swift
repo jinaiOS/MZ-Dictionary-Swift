@@ -31,8 +31,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         registerTableViewCell()
-        fetchListCount()
-        fetchList()
+        fetchListCount(isFirst: true)
         
         lblYear.text = "\(DateFromThisYear()) 년"
         btnNext.isEnabled = false
@@ -54,21 +53,31 @@ class MainViewController: UIViewController {
         tvMain.dataSource = self
     }
     
-    func fetchListCount() {
+    func fetchListCount(isFirst: Bool) {
         Task {
-            let (result, error) = await FireStoreManager.shared.fetchNumberOfDoc()
+            let (result, error) = await FireStoreManager.shared.fetchNumberOfDoc(year: String(currentYear))
             if let error {
                 print(error.localizedDescription)
                 return
             }
             totalCount = result ?? 0
             print("totalCount: \(totalCount)")
+            if totalCount < 10 {
+                pageNum = totalCount
+            }
+            if totalCount == 0 {
+                self.list.removeAll()
+                self.tvMain.reloadData()
+            }
+            if pageNum != 0 {
+                fetchList(pageNum: pageNum, isFirst: isFirst)
+            }
         }
     }
     
-    func fetchList() {
-        FireStoreManager.shared.fetchList(pageSize: pageNum) { list in
-            if self.pageNum == 10 {
+    func fetchList(pageNum: Int, isFirst: Bool) {
+        FireStoreManager.shared.fetchList(pageSize: pageNum, year: String(currentYear), isFirst: isFirst) { list in
+            if self.pageNum == 10 || isFirst {
                 self.list = list ?? []
             } else {
                 self.list += list ?? []
@@ -82,12 +91,14 @@ class MainViewController: UIViewController {
         currentYear -= 1
         lblYear.text = "\(currentYear) 년"
         btnNext.isEnabled = true
+        fetchListCount(isFirst: true)
     }
     
     @IBAction func nextYearButtonPressed(_ sender: Any) {
         currentYear += 1
         lblYear.text = "\(currentYear) 년"
         btnNext.isEnabled = currentYear != Int(DateFromThisYear()) ?? 0
+        fetchListCount(isFirst: true)
     }
     
 }
@@ -109,7 +120,7 @@ extension MainViewController {
                     self.tvMain.reloadSections(IndexSet(integer: 1), with: .none)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-                    self.fetchList()
+                    self.fetchList(pageNum: self.pageNum, isFirst: false)
                 })
             }
         }
