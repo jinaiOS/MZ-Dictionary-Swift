@@ -8,28 +8,30 @@
 import UIKit
 
 class MainDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblContent: UILabel!
+    @IBOutlet weak var lblSong: UILabel!
+    @IBOutlet weak var lblLink: UILabel!
     
     var dataArray: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         lblTitle.text = dataArray[0]
         lblContent.text = dataArray[1]
+        lblSong.isHidden = (dataArray[2] == "")
+        lblLink.isHidden = (dataArray[3] == "")
+        lblSong.text = "노래: \(dataArray[2])"
+        lblLink.text = "참고 링크: \(dataArray[3])"
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clickLinkLabel))
+        lblLink.addGestureRecognizer(tapGesture)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @objc func clickLinkLabel(sender: UITapGestureRecognizer) {
+        let webViewController = WebViewController(URL(string: dataArray[3]))
+        present(webViewController, animated: true, completion: nil)
     }
-    */
-
 }

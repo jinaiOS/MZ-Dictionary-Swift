@@ -169,7 +169,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MainDetailViewController(nibName: "MainDetailViewController", bundle: nil)
-        vc.dataArray = [list[indexPath.row].title ?? "", list[indexPath.row].content ?? ""]
+        vc.dataArray = [list[indexPath.row].title ?? "", list[indexPath.row].content ?? "", list[indexPath.row].song ?? "", list[indexPath.row].link ?? ""]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

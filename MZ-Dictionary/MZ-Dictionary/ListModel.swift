@@ -12,6 +12,8 @@ struct ListModel: Codable {
     let title: String?
     let content: String?
     let image: String?
+    let song: String?
+    let link: String?
     let star: Bool?
     
     enum CodingKeys: String, CodingKey {
@@ -19,6 +21,8 @@ struct ListModel: Codable {
         case title
         case content
         case image
+        case song
+        case link
         case star
     }
 }
