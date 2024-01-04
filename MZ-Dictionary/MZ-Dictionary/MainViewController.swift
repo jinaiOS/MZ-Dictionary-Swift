@@ -12,6 +12,10 @@ class MainViewController: UIViewController {
     /// main tableview
     @IBOutlet weak var tvMain: UITableView!
     
+    @IBOutlet weak var btnPrev: UIButton!
+    @IBOutlet weak var lblYear: UILabel!
+    @IBOutlet weak var btnNext: UIButton!
+    
     var list: [ListModel] = []
     
     var pageNum = 10
@@ -20,14 +24,28 @@ class MainViewController: UIViewController {
     var isDataRunning = false
     
     var cellHeights: [IndexPath: CGFloat] = [:]
+    var gradientLayer: CAGradientLayer!
+    var currentYear = 2024
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         registerTableViewCell()
         fetchListCount()
         fetchList()
         
-        tvMain.layer.cornerRadius = 10
+        lblYear.text = "\(DateFromThisYear()) 년"
+        btnNext.isEnabled = false
+        currentYear = Int(DateFromThisYear()) ?? 0
+    }
+    
+    func DateFromThisYear() -> String {
+        let dateFormatter = DateFormatter.init()
+        dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = "yyyy"
+        dateFormatter.locale = Locale.init(identifier: "ko_KR")
+        dateFormatter.formatterBehavior = .default
+        return dateFormatter.string(from: Date())
     }
     
     func registerTableViewCell() {
@@ -59,6 +77,19 @@ class MainViewController: UIViewController {
             self.tvMain.reloadData()
         }
     }
+    
+    @IBAction func prevYearButtonPressed(_ sender: Any) {
+        currentYear -= 1
+        lblYear.text = "\(currentYear) 년"
+        btnNext.isEnabled = true
+    }
+    
+    @IBAction func nextYearButtonPressed(_ sender: Any) {
+        currentYear += 1
+        lblYear.text = "\(currentYear) 년"
+        btnNext.isEnabled = currentYear != Int(DateFromThisYear()) ?? 0
+    }
+    
 }
 extension MainViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -141,11 +172,17 @@ class MainTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnStar: UIButton!
     
+    @IBOutlet weak var vContent: UIView!
+    
     var index = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        vContent.layer.cornerRadius = 15
+        vContent.layer.shadowColor = UIColor.black.cgColor
+        vContent.layer.shadowRadius = 6
+        vContent.layer.shadowOpacity = 0.16
+        vContent.layer.shadowOffset = CGSize(width: 0, height: 3)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
