@@ -11,7 +11,7 @@ class StarViewController: UIViewController {
 
     /// main tableview
     @IBOutlet weak var tvMain: UITableView!
-    
+    /// empty label
     @IBOutlet weak var lblEmpty: UILabel!
     
     var list: [ListModel] = []
@@ -146,10 +146,16 @@ class StarTableViewCell: UITableViewCell {
     @IBOutlet weak var lblContent: UILabel!
     
     @IBOutlet weak var btnStar: UIButton!
+    /// content view
+    @IBOutlet weak var vContent: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        vContent.layer.cornerRadius = 15
+        vContent.layer.shadowColor = UIColor.black.cgColor
+        vContent.layer.shadowRadius = 6
+        vContent.layer.shadowOpacity = 0.16
+        vContent.layer.shadowOffset = CGSize(width: 0, height: 3)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
